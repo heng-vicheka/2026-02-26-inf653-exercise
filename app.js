@@ -7,7 +7,7 @@ const data = require('./data');
 
 const app = express();
 const PORT = 3000;
-const DATA_FILE = path.join(__dirname, 'datae.json');
+const DATA_FILE = path.join(__dirname, 'data.json');
 
 app.engine('handlebars', engine({
   defaultLayout: 'main',
@@ -25,9 +25,6 @@ app.engine('handlebars', engine({
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard', { title: 'Dashboard', data: data });
-});
 
 function readItems() {
   return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
@@ -38,9 +35,8 @@ function writeItems(items) {
 }
 
 // Dashboard
-app.get('/', (_req, res) => {
-  const items = readItems();
-  res.render('index', { items });
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard', { data: data });
 });
 
 // Item detail
