@@ -117,7 +117,8 @@ app.post('/report-image', (req, res) => {
       ok: true,
       message: `Received image form submission for file: ${imageFile.originalFilename}`,
     });
-  }
+  });
+});
 
   
 
