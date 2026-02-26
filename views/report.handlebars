@@ -1,0 +1,84 @@
+<h2>Add a New Lost Item</h2>
+<form action="/report-text" method="POST" id="fetch-form">
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+  </div>
+  <div>
+    <label for="location">Location Lost:</label>
+    <input type="text" id="location" name="location" required>
+  </div>
+  <div>
+    <label for="date">Date Lost:</label>
+    <input type="date" id="date" name="date" required>
+  </div>
+  <div>
+    <label for="contact">Contact Info:</label>
+    <input type="email" id="contact" name="contact" required>
+  </div>
+  <button type="submit">Report Lost Item</button>
+</form>
+
+<form id="image-form" action="/report-image" method="POST" enctype="multipart/form-data">
+  <div>
+    <label for="image">Upload Image of Lost Item:</label>
+    <input type="file" id="image" name="image" accept="image/*">
+  </div>
+  <button type="submit">Upload Image</button>
+</form>
+
+<script>
+    const fetchForm = document.getElementById('fetch-form');
+    const imageForm = document.getElementById('image-form');
+
+    fetchForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(fetchForm);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        try {
+            const response = await fetch('/report-text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('Lost item reported successfully!');
+                fetchForm.reset();
+            } else {
+                alert('Failed to report lost item.');
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('An error occurred while reporting the lost item.');
+        }
+    });
+
+    imageForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(imageForm);
+
+        try {
+            const response = await fetch('/report-image', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Image uploaded successfully!');
+                imageForm.reset();
+            } else {
+                alert('Failed to upload image.');
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            alert('An error occurred while uploading the image.');
+        }
+    });
+</script>
