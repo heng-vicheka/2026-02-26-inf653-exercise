@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
-const DATA_FILE = path.join(__dirname, 'datae.json');
+const DATA_FILE = path.join(__dirname, 'data.json');
 
 app.engine('handlebars', engine({
   defaultLayout: 'main',
@@ -34,11 +34,6 @@ function writeItems(items) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(items, null, 4));
 }
 
-// Dashboard
-app.get('/', (_req, res) => {
-  const items = readItems();
-  res.render('index', { items });
-});
 
 // Item detail
 app.get('/items/:id', (req, res) => {
