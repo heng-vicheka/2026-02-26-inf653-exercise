@@ -25,15 +25,6 @@ app.engine('handlebars', engine({
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
-
-function readItems() {
-  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-}
-
-function writeItems(items) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(items, null, 4));
-}
-
 // Dashboard
 app.get('/dashboard', (req, res) => {
   res.render('dashboard', { data: data });
