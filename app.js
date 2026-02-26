@@ -39,32 +39,6 @@ app.get('/dashboard', (req, res) => {
   res.render('dashboard', { data: data });
 });
 
-// Item detail
-app.get('/items/:id', (req, res) => {
-  const items = readItems();
-  const item = items.find(i => i.id === req.params.id);
-  if (!item) return res.status(404).send('Item not found');
-  res.render('detail', { item });
-});
-
-// Update status
-app.post('/items/:id/status', (req, res) => {
-  const items = readItems();
-  const item = items.find(i => i.id === req.params.id);
-  if (!item) return res.status(404).send('Item not found');
-  item.status = req.body.status;
-  writeItems(items);
-  res.redirect(`/items/${req.params.id}`);
-});
-
-// Delete item
-app.post('/items/:id/delete', (req, res) => {
-  const items = readItems();
-  const filtered = items.filter(i => i.id !== req.params.id);
-  writeItems(filtered);
-  res.redirect('/');
-});
-
 app.use((req, res) => {
   res.status(404).render('404');
 });
