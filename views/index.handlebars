@@ -1,0 +1,13 @@
+<h1>Lost & Found Dashboard</h1>
+
+{{#if items.length}}
+  <ul>
+    {{#each items}}
+      <li>
+        <a href="/items/{{this.id}}">{{this.name}}</a> — {{this.status}} ({{this.location}})
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No items reported.</p>
+{{/if}}
