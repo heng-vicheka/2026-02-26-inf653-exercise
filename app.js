@@ -2,6 +2,8 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const path = require('path');
 
+const data = require('./data');
+
 const app = express();
 const PORT = 3000;
 
@@ -20,6 +22,10 @@ app.engine('handlebars', engine({
 
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
+
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard', { title: 'Dashboard', data: data });
+});
 
 app.use((req, res) => {
   res.status(404);
