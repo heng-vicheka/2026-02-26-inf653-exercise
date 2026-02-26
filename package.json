@@ -1,0 +1,23 @@
+{
+  "name": "2026-02-26-inf653-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "format": "npx prettier . --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-handlebars": "^8.0.3",
+    "multiparty": "^4.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prettier": "3.8.1"
+  }
+}
