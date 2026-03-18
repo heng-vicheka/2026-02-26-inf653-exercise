@@ -1,20 +1,24 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
 const path = require('path');
+const fs = require('fs');
+
+const data = require('./data');
 
 // add in multiparty
 const multiparty = require('multiparty');
 
 const app = express();
 const PORT = 3000;
+const DATA_FILE = path.join(__dirname, 'data.json');
 
 // turn off x-powered-by
 app.disable('x-powered-by');
 
 app.engine('handlebars', engine({
-  defaultLayout: 'main',              
-  extname: '.handlebars',             
-  partialsDir: ['views/partials/'], 
+  defaultLayout: 'main',
+  extname: '.handlebars',
+  partialsDir: ['views/partials/'],
   helpers: {
     section: function(name, options) {
       if (!this._sections) this._sections = {};
@@ -120,11 +124,13 @@ app.post('/report-image', (req, res) => {
   });
 });
 
-  
-
+// Dashboard
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard', { data: data });
+});
 
 app.use((req, res) => {
-  res.status(404);
+  res.status(404).render('404');
 });
 
 app.listen(PORT, () => {
