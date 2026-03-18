@@ -1,30 +1,10 @@
 [
     {
-        "id": "unique_string",
+        "id": "item-001",
         "name": "Blue Wallet",
         "description": "Leather wallet with student ID",
         "location": "Library Hall B",
         "date": "2023-10-25",
-        "contact": "student@univ.edu",
-        "imagePath": "/uploads/filename.jpg",
-        "status": "Lost"      
-    },
-    {
-        "id": "unique_string",
-        "name": "Red Umbrella",
-        "description": "Red umbrella with wooden handle",
-        "location": "Cafeteria",
-        "date": "2023-10-20",
-        "contact": "student@univ.edu",
-        "imagePath": "/uploads/filename.jpg",
-        "status": "Found"
-    },
-    {
-        "id": "unique_string",
-        "name": "Silver Laptop",
-        "description": "15-inch laptop with university stickers",
-        "location": "Computer Lab",
-        "date": "2023-10-22",
         "contact": "student@univ.edu",
         "imagePath": "/uploads/filename.jpg",
         "status": "Lost"
